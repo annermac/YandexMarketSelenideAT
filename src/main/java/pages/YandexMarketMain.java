@@ -21,13 +21,13 @@ public class YandexMarketMain {
      * @param subCategoryName название подкаталога
      */
     @Step("Переходим на страницу категории {categoryName} - > {subCategoryName}")
-    public YandexMarketMain openPageCategory(String categoryName, String subCategoryName) {
+    public YandexMarketCategory openPageCategory(String categoryName, String subCategoryName) {
         $x("//header//button/span[text()='Каталог']").click();
         SelenideElement categoryLinkElement = $(byXpath("//li[@data-zone-name='category-link']//span[text()='" + categoryName + "']")).shouldBe(exist);
         SelenideElement subCategoryLinkElement = $(byXpath("//ul[@data-autotest-id='subItems']/li//a[text()='" + subCategoryName + "']"));
         actions().moveToElement(categoryLinkElement);
         subCategoryLinkElement.shouldBe(exist);
         actions().moveToElement(subCategoryLinkElement).click().perform();
-        return this;
+        return page(YandexMarketCategory.class);
     }
 }

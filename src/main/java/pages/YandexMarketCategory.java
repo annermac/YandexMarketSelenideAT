@@ -102,9 +102,11 @@ public class YandexMarketCategory {
                     break;
                 }
             }
+            if(!contains) {
+                break;
+            }
         }
-
-        return true;
+        return contains;
     }
 
     /**
